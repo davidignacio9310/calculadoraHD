@@ -8,13 +8,13 @@ on:
   workflow_dispatch:
 
 jobs:
-…      run: |
-        cd android
-        chmod +x gradlew
-        ./gradlew assembleDebug
+…        run: |
+          cd android
+          chmod +x gradlew
+          ./gradlew assembleDebug
 
-    - name: Subir el Archivo APK generado a GitHub Artifacts
-      uses: actions/upload-artifact@v4
-      with:
-        name: Calculadora_Dialisis_Offline
-        path: android/app/build/outputs/apk/debug/app-debug.apk
+      - name: Subir el Archivo APK generado a GitHub Artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: Calculadora_Dialisis_Offline
+          path: android/app/build/outputs/apk/debug/app-debug.apk
