@@ -8,7 +8,52 @@ on:
   workflow_dispatch:
 
 jobs:
-…        run: |
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Descargar Repositorio
+        uses: actions/checkout@v4
+
+      - name: Configurar Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Configurar Java JDK 17 (Requerido para Android)
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'zulu'
+          java-version: '17'
+
+      - name: Aceptar Licencias de Android SDK
+        run: |
+          yes | sdkmanager --licenses || true
+
+      - name: Preparar Archivos de Configuración Estáticos
+        run: |
+          # Crear directorio web que Capacitor espera como contenedor
+          mkdir -p www
+          cp index.html www/index.html
+
+          # Escribir archivos de configuración de forma directa y segura en una sola línea para evitar errores de sintaxis en YAML
+          echo '{"name": "calculadora-dialisis","version": "1.0.0","description": "Calculadora de Dialisis Offline","main": "index.html","dependencies": {"@capacitor/core": "^6.0.0"},"devDependencies": {"@capacitor/cli": "^6.0.0","@capacitor/android": "^6.0.0"}}' > package.json
+          echo '{"appId": "com.dialisis.nefrologia","appName": "Calculadora Dialisis","webDir": "www","server": {"androidScheme": "https"}}' > capacitor.config.json
+
+      - name: Instalar Dependencias de Capacitor
+        run: |
+          npm install
+
+      - name: Añadir Plataforma de Android
+        run: |
+          npx cap add android
+
+      - name: Sincronizar Código a la Carpeta de Android Nativo
+        run: |
+          npx cap sync android
+
+      - name: Compilar la Aplicación a APK (Gradle)
+        run: |
           cd android
           chmod +x gradlew
           ./gradlew assembleDebug
