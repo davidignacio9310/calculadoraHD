@@ -1,0 +1,61 @@
+name: Compilar APK Offline
+
+on:
+  push:
+    branches:
+      - main
+      - master
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Descargar Repositorio
+      uses: actions/checkout@v3
+
+    - name: Configurar Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '18'
+
+    - name: Configurar Java JDK 17 (Requerido para Android)
+      uses: actions/setup-java@v3
+      with:
+        distribution: 'zulu'
+        java-version: '17'
+
+    - name: Preparar Estructura e Instalar Capacitor
+      run: |
+        # Creamos la carpeta www que Capacitor requiere como fuente de archivos de la Web
+        mkdir -p www
+        cp index.html www/index.html
+        
+        # Inicializar proyecto Node.js e instalar Capacitor
+        npm init -y
+        npm install @capacitor/core @capacitor/cli @capacitor/android
+
+    - name: Inicializar Configuración de Capacitor
+      run: |
+        npx cap init "Calculadora Dialisis" "com.dialisis.nefrologia" --web-dir=www
+
+    - name: Añadir Plataforma de Android
+      run: |
+        npx cap add android
+
+    - name: Sincronizar Código a la Carpeta de Android Nativo
+      run: |
+        npx cap sync android
+
+    - name: Compilar la Aplicación a APK (Gradle)
+      run: |
+        cd android
+        chmod +x gradlew
+        ./gradlew assembleDebug
+
+    - name: Subir el Archivo APK generado a GitHub Artifacts
+      uses: actions/upload-artifact@v4
+      with:
+        name: Calculadora_Dialisis_Offline.apk
+        path: android/app/build/outputs/apk/debug/app-debug.apk
