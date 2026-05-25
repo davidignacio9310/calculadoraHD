@@ -6,231 +6,182 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <title>Calculadora de Tiempo de Diálisis</title>
-    <link rel="manifest" href="data:application/json;base64,ewogICJuYW1lIjogIkNhbGN1bGFkb3JhIGRlIERpYWxpc2lzIiwKICAic2hvcnRfbmFtZSI6ICJEaWFsaXNpcyIsCiAgInN0YXJ0X3VybCI6ICIuL2luZGV4Lmh0bWwiLAogICJkaXNwbGF5IjogInN0YW5kYWxvbmUiLAogICJiYWNrZ3JvdW5kX2NvbG9yIjogIiMwZTFhMmUiLAogICJ0aGVtZV9jb2xvciI6ICIjMGUxYTJlIiwKICAib3JpZW50YXRpb24iOiAicG9ydHJhaXQtcHJpbWFyeSIsCiAgImljb25zIjogWwogICAgewogICAgICAic3JjIjogImRhdGE6aW1hZ2Uvc3ZnK3htbDt1dGY4LDxzdmcgeG1sbnM9J2h0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnJyB2aWV3Qm94PScwIDAgNTEyIDUxMic+PGcgZmlsbD0nIzQ4Y2FlNCc+PHBhdGggZD0nTTM2OCw2NEgxNDRjLTI2LjUsMC00OCwyMS41LTQ4LDQ4djI4OGMwLDI2LjUsMjEuNSw0OCw0OCw0OGgyMjRjMjYuNSwwLDQ4LTIxLjUsNDgtNDhWMTEyQzQxNiw4NS41LDM5NC41LDY0LDM2OCw2NHogTTM4NCw0MDBjMCw4LjgtNy4yLDE2LTE2LDE2SDE0NGMtOC44LDAtMTYtNy4yLTE2LTE2VjExMmMwLTguOCw3LjItMTYsMTYtMTZoMjI0YzguOCwwLDE2LDcuMiwxNiwxNlY0MDB6Jy8+PHBhdGggZD0nTTIwMCwxNDRoMTEyYzguOCwwLDE2LTcuMiwxNi0xNnMtNy4yLTE2LTE2LTE2SDIwMGMtOC44LDAtMTYtNy4yLTE2LTE2czcuMiwxNiwxNiwxNnonLz48cGF0aCBkPSJNMjU2LDIwMGMtNDQuMSwwLTgwLDM1LjktODAsODBzMzUuOSw4MCw4MCw4MHM4MC0zNS45LDgwLTgwUzMwMC4xLDIwMCwyNTYsMjAweiBNMjU2LDMyOGMtMjYuNSwwLTQ4LTIxLjUtNDgtNDhzMjEuNS00OCw0OC00OHM0OCwyMS41LDQ4LDQ4UzI4Mi41LDMyOCwyNTYsMzI4eiIvPjxwYXRoZD0nTTI0Miw0NThjLTQuNS00LjUtMTEtNS44LTE2LjgtMy40bC00OCwyMGMtNy43LDMuMi0xMS4zLDEyLjEtOC4xLDE5LjhzMTIuMSwxMS4zLDE5LjgsOC4xbDM5LjUtMTYuNWwyNC4yLDI0LjJjNi4yLDYuMiwxNi4zLDYuMiwyMi42LDBzNi4yLTE2LjMsMC0yMi42TDI0Miw0NTh6Jy8+PHBhdGggZD0nTTMxNC44LDQ1NC42Yy01LjgtMi40LTEyLjMtMS4xLTE2LjgsMy40bC0yNC4yLDI0LjJjLTYuMiw2LjIsNi4yLDE2LjMsMCwyMi42YzMuMSwzLjEsNy4yLDQuNywxMS4zLDQuN3M4LjItMS42LDExLjMtNC43bDI0LjItMjQuMmM0LjUtNC41LDUuOC0xMSwzLjQtMTYuOGwtMTYuNS0zOS41QzMxNC4zLDQ0OS43LDMwNS40LDQ0Ni4xLDI5Ny43LDQ0OS4zcy0xMS4zLDEyLjEtOC4xLDE5LjhMMzE0LjgsNDU0LjZ6Jy8+PC9nPjwvc3ZnPiIsCiAgICAgICJzaXplcyI6ICI1MTJ4NTEyIiwKICAgICAgInR5cGUiOiAiaW1hZ2Uvc3ZnK3htbCIsCiAgICAgICJwdXJwb3NlIjogImFueSBtYXNrb3BlbCIKICAgIH0KICBdCn0=">
-    <meta name="theme-color" content="#0e1a2e">
+    
+    <link rel="manifest" href="manifest.json">
+
     <style>
         :root {
             --bg-color: #0b132b;
             --card-bg: #1c2541;
             --accent-color: #48cae4;
-            --accent-hover: #00b4d8;
-            --text-primary: #ffffff;
-            --text-secondary: #90e0ef;
-            --border-color: #3a506b;
+            --text-color: #ffffff;
+            --text-dim: #9aa5b1;
             --success-color: #06d6a0;
+            --border-radius: 12px;
         }
 
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
             -webkit-tap-highlight-color: transparent;
-            -webkit-touch-callout: none;
         }
 
         body {
             background-color: var(--bg-color);
-            color: var(--text-primary);
-            min-height: 100vh;
+            color: var(--text-color);
             display: flex;
-            flex-direction: column;
-            align-items: center;
-            padding: 12px;
-            overflow-x: hidden;
-            -webkit-user-select: none;
-            user-select: none;
+            justify-content: center;
+            align-items: flex-start;
+            min-height: 100vh;
+            padding: 15px;
+        }
+
+        .app-container {
+            width: 100%;
+            max-width: 480px;
+            background-color: var(--card-bg);
+            padding: 20px;
+            border-radius: var(--border-radius);
+            box-shadow: 0 8px 24px rgba(0,0,0,0.3);
         }
 
         header {
-            width: 100%;
-            max-width: 480px;
-            text-align: center;
-            margin-bottom: 15px;
             display: flex;
-            flex-direction: column;
             align-items: center;
-            gap: 8px;
-            margin-top: env(safe-area-inset-top, 10px);
+            gap: 12px;
+            margin-bottom: 20px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            padding-bottom: 15px;
         }
 
-        .logo-container {
-            background: rgba(72, 202, 228, 0.1);
-            border: 2px solid var(--accent-color);
-            border-radius: 50%;
-            padding: 12px;
-            display: inline-flex;
-            justify-content: center;
-            align-items: center;
-            box-shadow: 0 0 12px rgba(72, 202, 228, 0.3);
-        }
-
-        .logo-container svg {
-            width: 45px;
-            height: 45px;
+        header svg {
+            width: 40px;
+            height: 40px;
             fill: var(--accent-color);
         }
 
-        h1 {
+        header h1 {
             font-size: 1.3rem;
-            color: var(--text-primary);
-            text-transform: uppercase;
-            letter-spacing: 0.8px;
             font-weight: 700;
         }
 
-        p.subtitle {
+        header p {
             font-size: 0.8rem;
-            color: var(--text-secondary);
+            color: var(--text-dim);
         }
 
-        main {
-            width: 100%;
-            max-width: 480px;
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-            padding-bottom: env(safe-area-inset-bottom, 20px);
+        .card-section {
+            background: rgba(255,255,255,0.03);
+            padding: 15px;
+            border-radius: var(--border-radius);
+            margin-bottom: 15px;
+            border: 1px solid rgba(255,255,255,0.05);
         }
 
-        .card {
-            background: var(--card-bg);
-            border: 1px solid var(--border-color);
-            border-radius: 14px;
-            padding: 16px;
-            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
-        }
-
-        .card-title {
-            font-size: 1rem;
+        .section-title {
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
             color: var(--accent-color);
             margin-bottom: 12px;
-            font-weight: 600;
             display: flex;
             align-items: center;
             gap: 8px;
-            border-bottom: 1px solid var(--border-color);
-            padding-bottom: 6px;
         }
 
-        .form-group {
-            margin-bottom: 12px;
+        .toggle-group {
+            display: flex;
+            background: rgba(0,0,0,0.2);
+            border-radius: 8px;
+            padding: 3px;
+            margin-bottom: 15px;
+        }
+
+        .toggle-btn {
+            flex: 1;
+            background: none;
+            border: none;
+            color: var(--text-dim);
+            padding: 10px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .toggle-btn.active {
+            background: var(--accent-color);
+            color: var(--bg-color);
+        }
+
+        .grid-inputs {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+        }
+
+        .input-wrapper {
             display: flex;
             flex-direction: column;
-            gap: 5px;
+            gap: 6px;
+        }
+
+        .input-wrapper.full-width {
+            grid-column: span 2;
         }
 
         label {
             font-size: 0.8rem;
-            color: var(--text-secondary);
-            font-weight: 500;
-        }
-
-        .input-row {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 10px;
+            color: var(--text-dim);
         }
 
         input, select {
-            width: 100%;
+            background: rgba(0,0,0,0.4);
+            border: 1px solid rgba(255,255,255,0.1);
+            color: var(--text-color);
             padding: 12px;
-            background: #0b132b;
-            border: 1.5px solid var(--border-color);
             border-radius: 8px;
-            color: white;
             font-size: 1rem;
+            width: 100%;
             outline: none;
-            transition: border-color 0.2s;
-            -webkit-user-select: text;
-            user-select: text;
         }
 
         input:focus, select:focus {
             border-color: var(--accent-color);
         }
 
-        .toggle-container {
-            display: flex;
-            background: #0b132b;
-            border: 1.5px solid var(--border-color);
-            border-radius: 8px;
-            padding: 3px;
-            margin-bottom: 12px;
-        }
-
-        .toggle-btn {
-            flex: 1;
-            padding: 12px;
-            border: none;
-            background: transparent;
-            color: var(--text-secondary);
-            font-size: 0.85rem;
-            font-weight: 600;
-            border-radius: 6px;
-            cursor: pointer;
-            transition: all 0.2s;
-            text-align: center;
-        }
-
-        .toggle-btn.active {
-            background: var(--accent-color);
-            color: var(--bg-color);
-            box-shadow: 0 2px 8px rgba(72, 202, 228, 0.3);
-        }
-
         .search-container {
             position: relative;
         }
 
-        .search-container input {
-            padding-right: 35px;
-        }
-
-        .search-container svg {
+        .dropdown-list {
             position: absolute;
-            right: 12px;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 18px;
-            height: 18px;
-            fill: var(--text-secondary);
-            pointer-events: none;
-        }
-
-        .dialyzer-results {
-            background: #0b132b;
-            border: 1px solid var(--border-color);
-            border-radius: 8px;
+            top: 100%;
+            left: 0;
+            right: 0;
+            background: #151c33;
+            border: 1px solid rgba(255,255,255,0.1);
             max-height: 180px;
             overflow-y: auto;
+            z-index: 10;
+            border-radius: 8px;
             margin-top: 5px;
             display: none;
-            z-index: 10;
         }
 
-        .dialyzer-option {
-            padding: 12px 15px;
+        .dropdown-item {
+            padding: 10px 12px;
             cursor: pointer;
-            border-bottom: 1px solid rgba(58, 80, 107, 0.5);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
             font-size: 0.9rem;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
         }
 
-        .dialyzer-option:active, .dialyzer-option.selected {
-            background: rgba(72, 202, 228, 0.2);
-            color: var(--accent-color);
-        }
-
-        .dialyzer-clearance {
-            font-size: 0.75rem;
-            background: rgba(6, 214, 160, 0.15);
-            color: var(--success-color);
-            padding: 2px 8px;
-            border-radius: 10px;
-            font-weight: bold;
+        .dropdown-item:hover {
+            background: var(--accent-color);
+            color: var(--bg-color);
         }
 
         .btn-calc {
@@ -238,485 +189,246 @@
             background: var(--accent-color);
             color: var(--bg-color);
             border: none;
-            padding: 14px;
+            padding: 15px;
             font-size: 1rem;
-            font-weight: bold;
-            border-radius: 8px;
+            font-weight: 700;
+            border-radius: var(--border-radius);
             cursor: pointer;
-            transition: background 0.2s;
-            box-shadow: 0 4px 12px rgba(72, 202, 228, 0.3);
             text-transform: uppercase;
-            letter-spacing: 0.5px;
-            margin-top: 4px;
+            letter-spacing: 1px;
+            margin-top: 10px;
         }
 
-        .btn-calc:active {
-            background: var(--accent-hover);
-        }
-
-        .results-container {
-            display: none;
-            animation: fadeIn 0.3s ease-out forwards;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(8px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .result-highlight {
-            background: linear-gradient(135deg, rgba(72, 202, 228, 0.15) 0%, rgba(6, 214, 160, 0.08) 100%);
-            border: 1px solid var(--accent-color);
-            padding: 16px;
-            border-radius: 10px;
+        .result-card {
+            background: rgba(6, 214, 160, 0.05);
+            border: 1px solid var(--success-color);
+            padding: 20px;
+            border-radius: var(--border-radius);
+            margin-top: 20px;
             text-align: center;
-            margin-bottom: 12px;
+            display: none;
         }
 
         .result-time {
-            font-size: 2rem;
+            font-size: 2.2rem;
             font-weight: 800;
             color: var(--success-color);
-            text-shadow: 0 0 8px rgba(6, 214, 160, 0.25);
-            margin: 4px 0;
+            margin: 10px 0;
         }
 
-        .result-time-sub {
-            font-size: 0.85rem;
-            color: var(--text-secondary);
-        }
-
-        .stats-grid {
+        .result-meta {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 8px;
-        }
-
-        .stat-box {
-            background: rgba(11, 19, 43, 0.6);
-            border: 1px solid var(--border-color);
-            border-radius: 8px;
-            padding: 10px;
-            text-align: center;
-        }
-
-        .stat-val {
-            font-size: 1.1rem;
-            font-weight: bold;
-            color: var(--accent-color);
-            margin-top: 2px;
-        }
-
-        .stat-label {
-            font-size: 0.7rem;
-            color: var(--text-secondary);
-        }
-
-        .info-badge {
-            font-size: 0.7rem;
-            color: var(--text-secondary);
-            background: rgba(255, 255, 255, 0.04);
-            padding: 8px 10px;
-            border-radius: 6px;
+            gap: 10px;
+            font-size: 0.8rem;
+            color: var(--text-dim);
             margin-top: 10px;
-            text-align: center;
-            border-left: 3px solid var(--accent-color);
-        }
-
-        ::-webkit-scrollbar {
-            width: 6px;
-        }
-        ::-webkit-scrollbar-track {
-            background: #0b132b;
-        }
-        ::-webkit-scrollbar-thumb {
-            background: var(--border-color);
-            border-radius: 10px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            padding-top: 10px;
         }
     </style>
 </head>
 <body>
 
-    <header>
-        <div class="logo-container">
-            <svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
-                <g>
-                    <path d="M368,64H144c-26.5,0-48,21.5-48,48v288c0,26.5,21.5,48,48,48h224c26.5,0,48-21.5,48-48V112C416,85.5,394.5,64,368,64z M384,400c0,8.8-7.2,16-16,16H144c-8.8,0-16-7.2-16-16V112c0-8.8,7.2-16,16-16h224c8.8,0,16,7.2,16,16V400z"/>
-                    <path d="M200,144h112c8.8,0;16-7.2,16-16s-7.2-16-16-16H200c-8.8,0-16,7.2-16,16S191.2,144,200,144z"/>
-                    <path d="M256,200c-44.1,0-80,35.9-80,80s35.9,80,80,80s80-35.9,80-80S300.1,200,256,200z M256,328c-26.5,0-48-21.5-48-48s21.5-48,48-48s48,21.5,48,48S282.5,328,256,328z"/>
-                    <path d="M242,458c-4.5-4.5-11-5.8-16.8-3.4l-48,20c-7.7,3.2-11.3,12.1-8.1,19.8s12.1,11.3,19.8,8.1l39.5-16.5l24.2,24.2c6.2,6.2,16.3,6.2,22.6,0s6.2-16.3,0-22.6L242,458z"/>
-                    <path d="M314.8,454.6c-5.8-2.4-12.3-1.1-16.8,3.4l-24.2,24.2c-6.2,6.2-6.2,16.3,0,22.6c3.1,3.1,7.2,4.7,11.3,4.7s8.2-1.6,11.3-4.7l24.2-24.2c4.5-4.5,5.8-11,3.4-16.8l-16.5-39.5C314.3,449.7,305.4,446.1,297.7,449.3s-11.3,12.1-8.1,19.8L314.8,454.6z"/>
-                </g>
+    <div class="app-container">
+        <header>
+            <svg viewBox="0 0 512 512">
+                <path d="M368,64H144c-26.5,0-48,21.5-48,48v288c0,26.5,21.5,48,48,48h224c26.5,0,48-21.5,48-48V112C416,85.5,394.5,64,368,64z M384,400c0,8.8-7.2,16-16,16H144c-8.8,0-16-7.2-16-16V112c0-8.8,7.2-16,16-16h224c8.8,0,16,7.2,16,16V400z"/>
+                <path d="M200,144h112c8.8,0,16-7.2,16-16s-7.2-16-16-16H200c-8.8,0-16,7.2-16,16S191.2,144,200,144z"/>
+                <path d="M256,200c-44.1,0-80,35.9-80,80s35.9,80,80,80s80-35.9,80-80S300.1,200,256,200z M256,328c-26.5,0-48-21.5-48,48s21.5-48,48-48s48,21.5,48,48S282.5,328,256,328z"/>
             </svg>
-        </div>
-        <h1>Calculadora de Diálisis</h1>
-        <p class="subtitle">Fórmula Watson - Optimizada para Móvil</p>
-    </header>
+            <div>
+                <h1>Tiempo de HD</h1>
+                <p>Prescripción de Diálisis Fisiológica (Watson)</p>
+            </div>
+        </header>
 
-    <main>
-        <div class="card">
-            <div class="card-title">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
-                Datos del Paciente
+        <div class="card-section">
+            <div class="section-title">👤 Datos del Paciente</div>
+            <div class="toggle-group">
+                <button type="button" class="toggle-btn active" id="btn-watson" onclick="setFormula('watson')">Con Talla (Watson)</button>
+                <button type="button" class="toggle-btn" id="btn-simp" onclick="setFormula('simplificada')">Sin Talla (Simplificado)</button>
             </div>
 
-            <div class="toggle-container">
-                <button type="button" class="toggle-btn active" id="btn-con-talla" onclick="setFormula(true)">Con Talla</button>
-                <button type="button" class="toggle-btn" id="btn-sin-talla" onclick="setFormula(false)">Sin Talla</button>
+            <div class="toggle-group">
+                <button type="button" class="toggle-btn active" id="btn-m" onclick="setGender('M')">Masculino</button>
+                <button type="button" class="toggle-btn" id="btn-f" onclick="setGender('F')">Femenino</button>
             </div>
 
-            <div class="form-group">
-                <label>Género</label>
-                <div class="toggle-container" style="margin-bottom: 0;">
-                    <button type="button" class="toggle-btn active" id="btn-masc" onclick="setGender('M')">Masculino</button>
-                    <button type="button" class="toggle-btn" id="btn-fem" onclick="setGender('F')">Femenino</button>
-                </div>
-            </div>
-
-            <div class="input-row" style="margin-top: 12px;">
-                <div class="form-group">
+            <div class="grid-inputs">
+                <div class="input-wrapper">
                     <label for="input-peso">Peso (kg)</label>
-                    <input type="number" id="input-peso" placeholder="ej. 70" step="0.1" inputmode="decimal" oninput="calculateOnTheFly()">
+                    <input type="number" id="input-peso" step="0.1" inputmode="decimal" placeholder="Ej. 70">
                 </div>
-                <div class="form-group" id="group-edad">
+                <div class="input-wrapper">
                     <label for="input-edad">Edad (años)</label>
-                    <input type="number" id="input-edad" placeholder="ej. 55" inputmode="numeric" oninput="calculateOnTheFly()">
+                    <input type="number" id="input-edad" inputmode="numeric" placeholder="Ej. 60">
                 </div>
-            </div>
-
-            <div class="form-group" id="group-talla">
-                <label for="input-talla">Talla / Estatura (cm)</label>
-                <input type="number" id="input-talla" placeholder="ej. 170" inputmode="numeric" oninput="calculateOnTheFly()">
-            </div>
-        </div>
-
-        <div class="card">
-            <div class="card-title">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><path d="M12 8v4l3 3"></path></svg>
-                Parámetros de Diálisis
-            </div>
-
-            <div class="form-group">
-                <label for="input-ktv">Meta Kt/V Deseada</label>
-                <input type="number" id="input-ktv" placeholder="ej. 1.4" step="0.1" min="0.1" max="3.0" inputmode="decimal" oninput="calculateOnTheFly()">
-            </div>
-
-            <div class="form-group" style="position: relative;">
-                <label for="dialyzer-search">Modelo del Dializador (Qb 300 ml/min)</label>
-                <div class="search-container">
-                    <input type="text" id="dialyzer-search" placeholder="Buscar dializador..." onfocus="showDialyzers()" oninput="filterDialyzers()">
-                    <svg viewBox="0 0 24 24">
-                        <path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/>
-                    </svg>
-                </div>
-                <div class="dialyzer-results" id="dialyzer-list">
-                    </div>
-            </div>
-
-            <div class="form-group">
-                <label for="input-clearance">Aclaramiento K Manual (ml/min)</label>
-                <input type="number" id="input-clearance" placeholder="Ingresar valor K manual" inputmode="numeric" oninput="clearDialyzerSelection(); calculateOnTheFly();">
-            </div>
-
-            <button type="button" class="btn-calc" onclick="calculateTime()">Calcular Tiempo</button>
-        </div>
-
-        <div class="results-container" id="results-card">
-            <div class="card">
-                <div class="card-title" style="color: var(--success-color);">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
-                    Resultado del Cálculo
-                </div>
-
-                <div class="result-highlight">
-                    <div style="font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px;">Tiempo Recomendado</div>
-                    <div class="result-time" id="result-text-time">-- : --</div>
-                    <div class="result-time-sub" id="result-text-minutes">0 minutos totales</div>
-                </div>
-
-                <div class="stats-grid">
-                    <div class="stat-box">
-                        <div class="stat-label">Volumen Corp. (V)</div>
-                        <div class="stat-val" id="result-v">0.0 L</div>
-                    </div>
-                    <div class="stat-box">
-                        <div class="stat-label">Aclaramiento (K)</div>
-                        <div class="stat-val" id="result-k">0 ml/min</div>
-                    </div>
-                </div>
-
-                <div class="info-badge" id="formula-used-badge">
-                    Fórmula utilizada: Watson (Con Talla)
+                <div class="input-wrapper full-width" id="wrapper-talla">
+                    <label for="input-talla">Talla (cm)</label>
+                    <input type="number" id="input-talla" inputmode="numeric" placeholder="Ej. 170">
                 </div>
             </div>
         </div>
-    </main>
+
+        <div class="card-section">
+            <div class="section-title">⏱️ Parámetros de Diálisis</div>
+            <div class="grid-inputs">
+                <div class="input-wrapper">
+                    <label for="input-ktv">Meta Kt/V Deseada</label>
+                    <input type="number" id="input-ktv" step="0.1" value="1.4" inputmode="decimal">
+                </div>
+                <div class="input-wrapper">
+                    <label for="search-dializador">Modelo Dializador</label>
+                    <div class="search-container">
+                        <input type="text" id="search-dializador" placeholder="Buscar filtro..." oninput="filtrarDializadores()" onfocus="mostrarDropdown()">
+                        <div class="dropdown-list" id="dializador-list"></div>
+                    </div>
+                </div>
+                <div class="input-wrapper full-width">
+                    <label for="input-k">Aclaramiento K Manual (ml/min)</label>
+                    <input type="number" id="input-k" placeholder="Modificar o introducir manual">
+                </div>
+            </div>
+        </div>
+
+        <button class="btn-calc" onclick="calcularTiempoHD()">Calcular Tiempo</button>
+
+        <div class="result-card" id="result-box">
+            <div style="font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.5px;">Tiempo Recomendado</div>
+            <div class="result-time" id="txt-tiempo-hrs">00:00 hrs</div>
+            <div id="txt-tiempo-min" style="font-size: 0.9rem; color: var(--text-dim);">0 minutos totales</div>
+            <div class="result-meta">
+                <div>Vol. Corp (V): <strong id="txt-v-val">0.0 L</strong></div>
+                <div>Aclaramiento (K): <strong id="txt-k-val">0 ml/min</strong></div>
+            </div>
+        </div>
+    </div>
 
     <script>
-        // Base de Datos de Dializadores Actualizada y Verificada (Qb 300 ml/min)
-        const dialyzers = [
-            { name: "F5", K: 227 },
-            { name: "F6", K: 243 },
-            { name: "F7", K: 247 },
-            { name: "F8", K: 252 },
-            { name: "F10", K: 259 },
-            { name: "FX5", K: 228 },
-            { name: "FX8", K: 254 },
-            { name: "FX10", K: 261 },
-            { name: "FX50", K: 253 },
-            { name: "FX60", K: 266 },
-            { name: "FX80", K: 279 },
-            { name: "FX100", K: 280 },
-            { name: "FX CorAL 60", K: 270 },
-            { name: "FX CorAL 80", K: 277 },
-            { name: "FX CorAL 100", K: 339 },
-            { name: "FX CorAL 120", K: 345 },
-            { name: "SM120 H", K: 255 },
-            { name: "SM140 H", K: 260 },
-            { name: "SM160 H", K: 267 },
-            { name: "SM180 H", K: 275 },
-            { name: "SM200 H", K: 280 },
-            { name: "SM140 L", K: 229 },
-            { name: "SM160 L", K: 231 },
-            { name: "SM180 L", K: 235 },
-            { name: "SM200 L", K: 238 },
-            { name: "ELISIO 09H", K: 243 },
-            { name: "ELISIO 11H", K: 253 },
-            { name: "ELISIO 13H", K: 263 },
-            { name: "ELISIO 15H", K: 270 },
-            { name: "ELISIO 17H", K: 275 },
-            { name: "ELISIO 19H", K: 280 },
-            { name: "ELISIO 21H", K: 284 },
-            { name: "ELISIO 25H", K: 293 },
-            { name: "ELISIO 11M", K: 240 },
-            { name: "ELISIO 13M", K: 249 },
-            { name: "ELISIO 15M", K: 257 },
-            { name: "ELISIO 17M", K: 265 },
-            { name: "ELISIO 19M", K: 268 },
-            { name: "ELISIO 21M", K: 274 },
-            { name: "ELISIO 11L", K: 237 },
-            { name: "ELISIO 13L", K: 248 },
-            { name: "ELISIO 15L", K: 255 },
-            { name: "ELISIO 17L", K: 263 },
-            { name: "ELISIO 19L", K: 267 },
-            { name: "ELISIO 21L", K: 274 },
-            { name: "Optiflux F160NRe", K: 271 },
-            { name: "Optiflux F180NRe", K: 277 },
-            { name: "Optiflux F200NRe", K: 280 },
-            { name: "Optiflux F250NRe", K: 287 },
-            { name: "Revaclear® 300", K: 272 },
-            { name: "Revaclear® 400", K: 281 },
-            { name: "POLYFLUX 140H", K: 262 },
-            { name: "POLYFLUX 170H", K: 270 },
-            { name: "POLYFLUX 210H", K: 281 },
-            { name: "Theranova 400", K: 246 },
-            { name: "Theranova 500", K: 250 }
+        // Base de datos oficial integrada desde Dializador.docx
+        const dializadores = [
+            {"name":"F5","k":227},{"name":"F6","k":243},{"name":"F7","k":247},{"name":"F8","k":252},{"name":"F10","k":259},
+            {"name":"FX5","k":228},{"name":"FX8","k":254},{"name":"FX10","k":261},{"name":"FX50","k":253},{"name":"FX60","k":266},
+            {"name":"FX80","k":279},{"name":"FX100","k":280},{"name":"FX CorAL 60","k":270},{"name":"FX CorAL 80","k":277},
+            {"name":"FX CorAL 100","k":339},{"name":"FX CorAL 120","k":345},{"name":"SM120 H","k":255},{"name":"SM140 H","k":260},
+            {"name":"SM160 H","k":267},{"name":"SM180 H","k":275},{"name":"SM200 H","k":280},{"name":"SM140 L","k":229},
+            {"name":"SM160 L","k":231},{"name":"SM180 L","k":235},{"name":"SM200 L","k":238},{"name":"ELISIO 09H","k":243},
+            {"name":"ELISIO 11H","k":253},{"name":"ELISIO 13H","k":263},{"name":"ELISIO 15H","k":270},{"name":"ELISIO 17H","k":275},
+            {"name":"ELISIO 19H","k":280},{"name":"ELISIO 21H","k":284},{"name":"ELISIO 25H","k":293},{"name":"ELISIO 11M","k":241}
         ];
 
-        let state = {
-            conTalla: true,
-            genero: 'M',
-            selectedDialyzer: null
-        };
+        let formulaActiva = 'watson';
+        let generoActivo = 'M';
 
-        window.addEventListener('DOMContentLoaded', () => {
-            initDialyzers();
-            document.addEventListener('click', (e) => {
-                if (!e.target.closest('.search-container') && !e.target.closest('.dialyzer-results')) {
-                    document.getElementById('dialyzer-list').style.display = 'none';
-                }
-            });
-        });
-
-        function setFormula(useTalla) {
-            state.conTalla = useTalla;
-            const btnCon = document.getElementById('btn-con-talla');
-            const btnSin = document.getElementById('btn-sin-talla');
-            const groupTalla = document.getElementById('group-talla');
-            const groupEdad = document.getElementById('group-edad');
-
-            if (useTalla) {
-                btnCon.classList.add('active');
-                btnSin.classList.remove('active');
-                groupTalla.style.display = 'flex';
-                groupEdad.style.display = 'flex';
-            } else {
-                btnCon.classList.remove('active');
-                btnSin.classList.add('active');
-                groupTalla.style.display = 'none';
-                groupEdad.style.display = 'none';
-            }
-            calculateOnTheFly();
+        function setFormula(tipo) {
+            formulaActiva = tipo;
+            document.getElementById('btn-watson').classList.toggle('active', tipo === 'watson');
+            document.getElementById('btn-simp').classList.toggle('active', tipo === 'simplificada');
+            document.getElementById('wrapper-talla').style.display = tipo === 'watson' ? 'flex' : 'none';
         }
 
         function setGender(gen) {
-            state.genero = gen;
-            const btnMasc = document.getElementById('btn-masc');
-            const btnFem = document.getElementById('btn-fem');
-
-            if (gen === 'M') {
-                btnMasc.classList.add('active');
-                btnFem.classList.remove('active');
-            } else {
-                btnMasc.classList.remove('active');
-                btnFem.classList.add('active');
-            }
-            calculateOnTheFly();
+            generoActivo = gen;
+            document.getElementById('btn-m').classList.toggle('active', gen === 'M');
+            document.getElementById('btn-f').classList.toggle('active', gen === 'F');
         }
 
-        function initDialyzers() {
-            const listDiv = document.getElementById('dialyzer-list');
-            listDiv.innerHTML = '';
-            
-            dialyzers.forEach((dialyzer) => {
-                const opt = document.createElement('div');
-                opt.className = 'dialyzer-option';
-                opt.innerHTML = `
-                    <span>${dialyzer.name}</span>
-                    <span class="dialyzer-clearance">K: ${dialyzer.K} ml/min</span>
-                `;
-                opt.onclick = () => selectDialyzer(dialyzer);
-                listDiv.appendChild(opt);
+        function mostrarDropdown() {
+            renderDropdown(dializadores);
+            document.getElementById('dializador-list').style.display = 'block';
+        }
+
+        function renderDropdown(lista) {
+            const container = document.getElementById('dializador-list');
+            container.innerHTML = '';
+            lista.forEach(item => {
+                const div = document.createElement('div');
+                div.className = 'dropdown-item';
+                div.innerText = `${item.name} (K: ${item.k} ml/min)`;
+                div.onclick = () => {
+                    document.getElementById('search-dializador').value = item.name;
+                    document.getElementById('input-k').value = item.k;
+                    container.style.display = 'none';
+                };
+                container.appendChild(div);
             });
         }
 
-        function showDialyzers() {
-            document.getElementById('dialyzer-list').style.display = 'block';
+        function filtrarDializadores() {
+            const query = document.getElementById('search-dializador').value.toLowerCase();
+            const filtrados = dializadores.filter(d => d.name.toLowerCase().includes(query));
+            renderDropdown(filtrados);
         }
 
-        function filterDialyzers() {
-            const query = document.getElementById('dialyzer-search').value.toLowerCase().trim();
-            const options = document.querySelectorAll('.dialyzer-option');
-            let visibleCount = 0;
-
-            options.forEach(opt => {
-                const text = opt.innerText.toLowerCase();
-                if (text.includes(query)) {
-                    opt.style.display = 'flex';
-                    visibleCount++;
-                } else {
-                    opt.style.display = 'none';
-                }
-            });
-
-            document.getElementById('dialyzer-list').style.display = visibleCount > 0 ? 'block' : 'none';
-        }
-
-        function selectDialyzer(dialyzer) {
-            state.selectedDialyzer = dialyzer;
-            document.getElementById('dialyzer-search').value = dialyzer.name;
-            document.getElementById('input-clearance').value = dialyzer.K;
-            document.getElementById('dialyzer-list').style.display = 'none';
-            calculateOnTheFly();
-        }
-
-        function clearDialyzerSelection() {
-            state.selectedDialyzer = null;
-            document.getElementById('dialyzer-search').value = '';
-        }
-
-        function calculateOnTheFly() {
-            const peso = parseFloat(document.getElementById('input-peso').value);
-            const clearance = parseFloat(document.getElementById('input-clearance').value);
-            const ktvMeta = parseFloat(document.getElementById('input-ktv').value);
-            
-            if (!isNaN(peso) && !isNaN(clearance) && !isNaN(ktvMeta)) {
-                calculateTime();
+        document.addEventListener('click', function(e) {
+            if (!e.target.closest('.search-container')) {
+                document.getElementById('dializador-list').style.display = 'none';
             }
-        }
+        });
 
-        function calculateTime() {
+        function calcularTiempoHD() {
             const peso = parseFloat(document.getElementById('input-peso').value);
-            const edad = parseFloat(document.getElementById('input-edad').value);
+            const edad = parseInt(document.getElementById('input-edad').value);
             const talla = parseFloat(document.getElementById('input-talla').value);
-            const ktvMeta = parseFloat(document.getElementById('input-ktv').value);
-            const K = parseFloat(document.getElementById('input-clearance').value);
+            const targetKtV = parseFloat(document.getElementById('input-ktv').value);
+            const kFiltracion = parseFloat(document.getElementById('input-k').value);
 
-            if (isNaN(peso) || peso <= 0) return;
-            if (isNaN(K) || K <= 0) return;
-            if (isNaN(ktvMeta) || ktvMeta <= 0) return;
+            if (!peso || !edad || (formulaActiva === 'watson' && !talla) || !targetKtV || !kFiltracion) {
+                alert("Por favor, rellene todos los campos requeridos.");
+                return;
+            }
 
-            let V = 0; 
-
-            if (state.conTalla) {
-                if (isNaN(edad) || edad <= 0 || isNaN(talla) || talla <= 0) return;
-                
-                if (state.genero === 'M') {
+            let V = 0;
+            if (formulaActiva === 'watson') {
+                if (generoActivo === 'M') {
                     V = 2.447 - (0.09516 * edad) + (0.1074 * talla) + (0.3362 * peso);
                 } else {
-                    V = -2.097 + (0.1069 * talla) + (0.2466 * peso);
+                    V = -2.0460 + (0.1069 * talla) + (0.2466 * peso);
                 }
             } else {
-                if (state.genero === 'M') {
-                    V = 0.60 * peso;
-                } else {
-                    V = 0.58 * peso;
-                }
+                // Constantes fijadas estrictamente: 0.60 para hombres y 0.58 para mujeres
+                const factor = (generoActivo === 'M') ? 0.60 : 0.58;
+                V = peso * factor;
             }
 
-            const V_ml = V * 1000;
-            const t_minutos = (ktvMeta * V_ml) / K;
+            // Fórmula del tiempo: t = (Kt/V * V) / K. Convertimos K de ml/min a L/min dividiendo por 1000
+            const kLitrosMin = kFiltracion / 1000;
+            const tiempoMinutosTotales = Math.ceil((targetKtV * V) / kLitrosMin);
 
-            const horas = Math.floor(t_minutos / 60);
-            const minutosRestantes = Math.round(t_minutos % 60);
+            const horas = Math.floor(tiempoMinutosTotales / 60);
+            const minutos = tiempoMinutosTotales % 60;
 
-            document.getElementById('result-v').innerText = `${V.toFixed(2)} L`;
-            document.getElementById('result-k').innerText = `${K.toFixed(0)} ml/min`;
+            document.getElementById('txt-v-val').innerText = `${V.toFixed(2)} L`;
+            document.getElementById('txt-k-val').innerText = `${kFiltracion} ml/min`;
+            document.getElementById('txt-tiempo-hrs').innerText = `${String(horas).padStart(2, '0')}:${String(minutos).padStart(2, '0')} hrs`;
+            document.getElementById('txt-tiempo-min').innerText = `${tiempoMinutosTotales} minutos totales`;
             
-            const txtHoras = horas.toString().padStart(2, '0');
-            const txtMinutos = minutosRestantes.toString().padStart(2, '0');
-            document.getElementById('result-text-time').innerText = `${txtHoras}:${txtMinutos} hrs`;
-            document.getElementById('result-text-minutes').innerText = `${Math.round(t_minutos)} minutos en total`;
-            
-            document.getElementById('formula-used-badge').innerText = `Fórmula utilizada: Watson (${state.conTalla ? 'Con Talla' : 'Sin Talla'}) - ${state.genero === 'M' ? 'Hombre' : 'Mujer'}`;
-
-            document.getElementById('results-card').style.display = 'block';
+            document.getElementById('result-box').style.display = 'block';
         }
-    </script>
 
-    <script>
+        // Service Worker Offline Autocontenido
         if ('serviceWorker' in navigator) {
             window.addEventListener('load', () => {
+                const CACHE_NAME = 'hd-calc-v2';
                 const swCode = `
-                    const CACHE_NAME = 'nephro-dialysis-v4';
-                    const ASSETS = [ './', './index.html' ];
-
+                    const CACHE_NAME = '${CACHE_NAME}';
                     self.addEventListener('install', event => {
                         event.waitUntil(
-                            caches.open(CACHE_NAME)
-                            .then(cache => cache.addAll(ASSETS))
-                            .then(() => self.skipWaiting())
+                            caches.open(CACHE_NAME).then(cache => cache.addAll(['./', './index.html', './manifest.json']))
                         );
                     });
-
                     self.addEventListener('activate', event => {
                         event.waitUntil(
-                            caches.keys().then(keys => {
-                                return Promise.all(
-                                    keys.map(key => {
-                                        if (key !== CACHE_NAME) {
-                                            return caches.delete(key);
-                                        }
-                                    })
-                                );
-                            }).then(() => self.clients.claim())
+                            caches.keys().then(keys => Promise.all(keys.map(k => k !== CACHE_NAME ? caches.delete(k) : null)))
                         );
                     });
-
                     self.addEventListener('fetch', event => {
-                        event.respondWith(
-                            caches.match(event.request)
-                            .then(cachedResponse => cachedResponse || fetch(event.request))
-                        );
+                        event.respondWith(caches.match(event.request).then(res => res || fetch(event.request)));
                     });
                 `;
-
                 const blob = new Blob([swCode], { type: 'application/javascript' });
-                const swUrl = URL.createObjectURL(blob);
-                
-                navigator.serviceWorker.register(swUrl)
-                    .then(reg => console.log('PWA Service Worker listo.'))
-                    .catch(err => console.log('Error de SW:', err));
+                navigator.serviceWorker.register(URL.createObjectURL(blob));
             });
         }
     </script>
