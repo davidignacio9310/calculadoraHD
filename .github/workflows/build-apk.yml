@@ -1,4 +1,4 @@
-name: Compilar APK Firme y Válida
+name: Compilar APK Totalmente Válida y Firmada
 on:
   push:
     branches:
@@ -32,11 +32,11 @@ jobs:
           cd app_build
           cordova platform add android --no-telemetry
           
-          # Limpiar y copiar tu index.html
+          # Copiar tu index.html al directorio de compilación
           rm -rf www/*
           cp ../index.html www/index.html
           
-          # Crear manifiesto básico interno requerido
+          # Crear manifiesto básico requerido por el contenedor
           cat << 'EOF' > www/manifest.json
           {
             "name": "Calculadora de Dialisis",
@@ -49,23 +49,26 @@ jobs:
           }
           EOF
 
-      - name: Compilar APK Base
+      - name: Compilar APK en modo Release
         run: |
           cd app_build
           cordova build android --release -- --packageType=apk
 
-      - name: Generar Clave de Firma y Firmar APK (Evita error de paquete no válido)
+      - name: Optimizar, Alinear y Firmar con Esquema Moderno (apksigner v2/v3)
         run: |
           cd app_build/platforms/android/app/build/outputs/apk/release/
           
-          # 1. Generar una clave de auto-firma digital en el acto
+          # 1. Generar la clave de seguridad interna
           keytool -genkey -v -keystore mi-llave.keystore -alias dialisis -keyalg RSA -keysize 2048 -validity 10000 -storepass 123456 -keypass 123456 -dname "CN=Calculadora, OU=Medicina, O=Hospital, L=Faustino, S=SP, C=CU"
           
-          # 2. Firmar el archivo APK usando la herramienta oficial de Android (jarsigner)
-          jarsigner -verbose -sigalg SHA256withRSA -digestalg SHA256 -keystore mi-llave.keystore -storepass 123456 app-release-unsigned.apk dialisis
+          # 2. PRIMERO se debe alinear el archivo (Zipalign) ANTES de usar apksigner
+          $ANDROID_HOME/build-tools/34.0.0/zipalign -v 4 app-release-unsigned.apk TiempoHD_Alineada.apk
           
-          # 3. Optimizar y renombrar el archivo para que sea un instalador Android definitivo
-          $ANDROID_HOME/build-tools/34.0.0/zipalign -v 4 app-release-unsigned.apk TiempoHD_Instalable.apk
+          # 3. SEGUNDO se firma usando APKSIGNER (Soporta esquemas modernos de Android que evitan el error de paquete inválido)
+          $ANDROID_HOME/build-tools/34.0.0/apksigner sign --ks mi-llave.keystore --ks-pass pass:123456 --key-pass pass:123456 --out TiempoHD_Instalable.apk TiempoHD_Alineada.apk
+          
+          # 4. Verificar que la firma es perfectamente válida para Android
+          $ANDROID_HOME/build-tools/34.0.0/apksigner verify TiempoHD_Instalable.apk
 
       - name: Extraer y Guardar la APK Verificada
         uses: actions/upload-artifact@v4
