@@ -1,74 +1,65 @@
-name: Build Android APK (Autocontenido y Automatizado)
+name: Compilar APK Automático y Autónomo
 on:
   push:
     branches:
       - main
 
 jobs:
-  build:
+  android-build:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout Repository
+      - name: Descargar Código del Repositorio
         uses: actions/checkout@v4
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: 20
-
-      - name: Instalar Java JDK 17
+      - name: Configurar Entorno de Java
         uses: actions/setup-java@v4
         with:
           distribution: 'zulu'
           java-version: '17'
 
-      - name: Generar Manifiesto e Icono Físicos en Servidor
-        run: |
-          # 1. Crear el icono SVG temporal para el instalador
-          cat << 'EOF' > icon.svg
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-            <g fill="#48cae4">
-              <path d="M368,64H144c-26.5,0-48,21.5-48,48v288c0,26.5,21.5,48,48,48h224c26.5,0,48-21.5,48-48V112C416,85.5,394.5,64,368,64z M384,400c0,8.8-7.2,16-16,16H144c-8.8,0-16-7.2-16-16V112c0-8.8,7.2-16,16-16h224c8.8,0,16,7.2,16,16V400z"/>
-              <path d="M200,144h112c8.8,0,16-7.2,16-16s-7.2-16-16-16H200c-8.8,0-16,7.2-16,16S191.2,144,200,144z"/>
-              <path d="M256,200c-44.1,0-80,35.9-80,80s35.9,80,80,80s80-35.9,80-80S300.1,200,256,200z M256,328c-26.5,0-48-21.5-48,48s21.5-48,48-48s48,21.5,48,48S282.5,328,256,328z"/>
-            </g>
-          </svg>
-          EOF
+      - name: Configurar Android SDK
+        uses: android-actions/setup-android@v3
 
-          # 2. Crear el archivo manifest.json físico
-          cat << 'EOF' > manifest.json
+      - name: Configurar Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Preparar Entorno e Icono
+        run: |
+          # 1. Crear estructura limpia de Cordova para evitar bloqueos
+          npm install -g cordova
+          cordova create app_build com.calc.dialisis "Tiempo de HD"
+          cd app_build
+          
+          # 2. Agregar soporte para Android
+          cordova platform add android --no-telemetry
+          
+          # 3. Mover tu index.html al directorio de compilación
+          rm -rf www/*
+          cp ../index.html www/index.html
+          
+          # 4. Crear un manifiesto web básico para que no falte la referencia
+          cat << 'EOF' > www/manifest.json
           {
             "name": "Calculadora de Dialisis",
             "short_name": "Dialisis",
-            "start_url": "./index.html",
+            "start_url": "index.html",
             "display": "standalone",
             "background_color": "#0e1a2e",
             "theme_color": "#0e1a2e",
-            "orientation": "portrait-primary",
-            "icons": [
-              {
-                "src": "icon.svg",
-                "sizes": "512x512",
-                "type": "image/svg+xml",
-                "purpose": "any maskable"
-              }
-            ]
+            "orientation": "portrait-primary"
           }
           EOF
 
-      - name: Instalar e Inicializar Bubblewrap de forma No Interactiva
+      - name: Compilar APK de Producción (Sin Interacción)
         run: |
-          npm install -g @bubblewrap/cli
-          # Usamos yes "" para responder afirmativamente de forma automática a los términos y licencias del SDK
-          yes "" | bubblewrap init --manifest=manifest.json --noXorRISC
+          cd app_build
+          # Comando nativo de compilación rápida sin firmas interactivas
+          cordova build android --device --release -- --packageType=apk
 
-      - name: Compilar APK sin interacción
-        run: |
-          # Se ejecuta la compilación en modo desatendido
-          bubblewrap build --skipConfig
-
-      - name: Subir APK final como Artefacto
+      - name: Extraer y Guardar la APK Lista para Instalar
         uses: actions/upload-artifact@v4
         with:
-          name: TiempoHD-APK
-          path: ./*.apk
+          name: TiempoHD-Instalable
+          path: app_build/platforms/android/app/build/outputs/apk/release/app-release-unsigned.apk
