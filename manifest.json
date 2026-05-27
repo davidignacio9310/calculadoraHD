@@ -1,0 +1,17 @@
+{
+  "name": "Calculadora de Diálisis",
+  "short_name": "Diálisis",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#0e1a2e",
+  "theme_color": "#0e1a2e",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "tiempo.png",
+      "sizes": "1024x576",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ]
+}
